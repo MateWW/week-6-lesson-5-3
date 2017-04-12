@@ -7,6 +7,9 @@ import { MusicSearchModule } from './music-search/music-search.module'
 import { routerModule } from './app.routing'
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PlaylistsService } from './playlists/playlists.service'
+import { MusicSharedModule } from "./music-shared/music-shared.module"
+import { PlaylistselectionService } from "./music-shared/playlistselection.service"
 
 @NgModule({
   declarations: [
@@ -19,9 +22,13 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HttpModule,
     PlaylistsModule,
     MusicSearchModule,
-    routerModule
+    routerModule,
+    MusicSharedModule
   ],
-  providers: [],
+  providers: [
+    PlaylistsService,
+    PlaylistselectionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

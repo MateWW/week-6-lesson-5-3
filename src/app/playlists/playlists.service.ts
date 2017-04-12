@@ -31,6 +31,19 @@ export class PlaylistsService {
       })
   }
 
+  addToPlaylist(playlistId, track){
+    let playlist = this.playlists.find(playlist => playlist.id == playlistId);
+
+
+    // Prosta modyfikacja :D
+    if(playlist.tracks.find(tracki => tracki.id == track.id))
+      return;
+
+    playlist.tracks.push(track);
+    this.savePlaylist(playlist)
+      .subscribe(()=>{});
+  }
+
   createPlaylist():Playlist {
     return {
       name: '',
