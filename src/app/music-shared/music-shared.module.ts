@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { PlaylistselectorComponent } from './playlistselector.component';
-import { TrackListComponent } from "./track-list.component"
+import { TrackListComponent } from "./track-list.component";
+import { PlayerComponentComponent } from './player-component.component'
 
 @NgModule({
   imports: [
@@ -11,11 +12,13 @@ import { TrackListComponent } from "./track-list.component"
   ],
   declarations: [
   	PlaylistselectorComponent,
-  	TrackListComponent
+  	TrackListComponent,
+  	PlayerComponentComponent
   ],
   exports: [
   	PlaylistselectorComponent,
-  	TrackListComponent
+  	TrackListComponent,
+    PlayerComponentComponent
   ]
 })
 export class MusicSharedModule { }

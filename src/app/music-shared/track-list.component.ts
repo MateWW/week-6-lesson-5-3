@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlaylistselectionService } from './playlistselection.service';
+import { PlayerService } from './player.service'
 
 @Component({
   selector: 'track-list',
   template: `
-    <audio #audio_id controls style="width:100%"></audio>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -19,7 +19,7 @@ import { PlaylistselectionService } from './playlistselection.service';
           <td> {{track.track_number}} </td>
           <td> {{track.name}} </td>
           <td> {{track.artists[0].name}} </td>
-          <td (click)="play(audio_id, track)" > Graj </td>
+          <td (click)="play(track)" > Graj </td>
           <td (click)="addToPlaylist(track)" > Dodaj </td>
         </tr>
       </tbody>
@@ -32,25 +32,16 @@ export class TrackListComponent implements OnInit {
   @Input()
   tracks
 
-  play(audio, track){
-    audio.volume = 0.1;
-    
-    if(audio.src != track.preview_url){
-      audio.src = track.preview_url;
-      audio.play()
-    }else if(audio.paused){
-      audio.play();
-    }else{
-      audio.pause();
-    }
+  play(track){
+    console.log(track);
+    this.playerService.play(track);
   }
 
   addToPlaylist(track){
-    console.log(track);
     this.selectionService.addToPlaylist(track);
   }
 
-  constructor( private selectionService: PlaylistselectionService) { }
+  constructor( private playerService:PlayerService, private selectionService: PlaylistselectionService) { }
 
   ngOnInit() {
   }

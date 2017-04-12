@@ -28,7 +28,6 @@ export class PlaylistselectionService {
   }
 
   addToPlaylist(track){
-  	console.log(this.selectedId);
  	this.playlistService.addToPlaylist(this.selectedId,track);
   }
 

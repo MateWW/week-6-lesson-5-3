@@ -34,6 +34,8 @@ export class PlaylistsService {
   addToPlaylist(playlistId, track){
     let playlist = this.playlists.find(playlist => playlist.id == playlistId);
 
+    if(!playlist)
+      return;
 
     // Prosta modyfikacja :D
     if(playlist.tracks.find(tracki => tracki.id == track.id))

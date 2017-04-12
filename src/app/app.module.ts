@@ -10,6 +10,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PlaylistsService } from './playlists/playlists.service'
 import { MusicSharedModule } from "./music-shared/music-shared.module"
 import { PlaylistselectionService } from "./music-shared/playlistselection.service"
+import { PlayerService } from "./music-shared/player.service"
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PlaylistselectionService } from "./music-shared/playlistselection.servi
   ],
   providers: [
     PlaylistsService,
-    PlaylistselectionService
+    PlaylistselectionService,
+    PlayerService
   ],
   bootstrap: [AppComponent]
 })
