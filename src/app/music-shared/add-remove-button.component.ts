@@ -3,9 +3,15 @@ import { Component, OnInit , Input } from '@angular/core';
 @Component({
   selector: 'add-remove-button',
   template: `
-    <i class="fa fa-play"></i> <i [ngClass]="{'fa':true, 'fa-plus':!onList, 'fa-minus':onList}"></i>
+    <i [ngClass]="{'fa':true, 'fa-plus':!onList, 'fa-minus':onList}"></i>
   `,
-  styles: []
+  styles: [
+    `i{
+      font-size:1.4em;
+      margin-top:auto;
+      margin-bottom:auto;
+    }`
+  ]
 })
 export class AddRemoveButtonComponent implements OnInit {
 
