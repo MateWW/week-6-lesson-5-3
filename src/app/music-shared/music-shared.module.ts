@@ -3,7 +3,9 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { PlaylistselectorComponent } from './playlistselector.component';
 import { TrackListComponent } from "./track-list.component";
-import { PlayerComponentComponent } from './player-component.component'
+import { PlayerComponentComponent } from './player-component.component';
+import { PlayPauseButtonComponent } from './play-pause-button.component';
+import { AddRemoveButtonComponent } from './add-remove-button.component'
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { PlayerComponentComponent } from './player-component.component'
   declarations: [
   	PlaylistselectorComponent,
   	TrackListComponent,
-  	PlayerComponentComponent
+  	PlayerComponentComponent,
+  	PlayPauseButtonComponent,
+  	AddRemoveButtonComponent
   ],
   exports: [
   	PlaylistselectorComponent,

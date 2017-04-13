@@ -15,10 +15,9 @@ export class PlayerComponentComponent implements OnInit {
 
   playerControl(url){
     let audio = this.audio.nativeElement.children[0];
-
+    console.log(123);
     if(audio.src == url)
     {
-       console.dir(audio);
        if(audio.paused)
          audio.play();
        else

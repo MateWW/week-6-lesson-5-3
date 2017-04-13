@@ -12,6 +12,7 @@ import { PlayerService } from './player.service'
           <th> Nazwa </th>
           <th> Wykonawca </th>
           <th> Próbka  </th>
+          <th> Dodaj  </th>
         </tr>
       </thead>
       <tbody>
@@ -19,8 +20,8 @@ import { PlayerService } from './player.service'
           <td> {{track.track_number}} </td>
           <td> {{track.name}} </td>
           <td> {{track.artists[0].name}} </td>
-          <td (click)="play(track)" > Graj </td>
-          <td (click)="addToPlaylist(track)" > Dodaj </td>
+          <td (click)="play(track)" > <play-pause-button></play-pause-button> </td>
+          <td (click)="addToPlaylist(track)" > <add-remove-button></add-remove-button> </td>
         </tr>
       </tbody>
     </table>
@@ -33,7 +34,6 @@ export class TrackListComponent implements OnInit {
   tracks
 
   play(track){
-    console.log(track);
     this.playerService.play(track);
   }
 
