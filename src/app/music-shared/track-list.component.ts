@@ -20,8 +20,8 @@ import { PlayerService } from './player.service'
           <td> {{track.track_number}} </td>
           <td> {{track.name}} </td>
           <td> {{track.artists[0].name}} </td>
-          <td (click)="play(track)" style="height:100%;"> <play-pause-button style="height:100%" class="d-flex justify-content-center"></play-pause-button> </td>
-          <td (click)="addToPlaylist(track)" style="height:100%;"> <add-remove-button class="d-flex justify-content-center" style="height:100%;"></add-remove-button> </td>
+          <td (click)="play(track)" style="height:100%;"> <play-pause-button [track]="track.id" style="height:100%" class="d-flex justify-content-center"></play-pause-button> </td>
+          <td (click)="addToPlaylist(track)" style="height:100%;"> <add-remove-button [track]="track.id" class="d-flex justify-content-center" style="height:100%;"></add-remove-button> </td>
         </tr>
       </tbody>
     </table>

@@ -31,7 +31,10 @@ export class PlayerComponentComponent implements OnInit {
   ngOnInit() {
     this.audio.nativeElement.children[0].volume=0.1;
     this.playerService.urlSteramGet()
-      .subscribe(url=>{this.playerControl(url);});
+      .subscribe(url=>{
+        if(url)
+          this.playerControl(url.preview_url);
+      });
   }
 
 }

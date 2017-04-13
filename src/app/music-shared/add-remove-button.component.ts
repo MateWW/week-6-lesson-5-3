@@ -10,7 +10,15 @@ import { Component, OnInit , Input } from '@angular/core';
       font-size:1.4em;
       margin-top:auto;
       margin-bottom:auto;
-    }`
+      transition: color .5s;
+    }
+    .fa-plus:hover{
+      color:#5cb85c;
+    }
+    .fa-minus:hover{
+      color:#d9534f;
+    }
+    `
   ]
 })
 export class AddRemoveButtonComponent implements OnInit {

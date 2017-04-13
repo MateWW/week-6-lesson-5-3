@@ -16,8 +16,8 @@ export class PlayerService {
 
 
   play(track){
-  	this.url=track.preview_url;
-  	this.urlStream.next(track.preview_url);
+  	this.url=track;
+  	this.urlStream.next(track);
 
   }	
 }
