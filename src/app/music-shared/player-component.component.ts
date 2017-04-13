@@ -4,14 +4,29 @@ import { PlayerService } from './player.service'
 @Component({
   selector: 'player-component',
   template: `
-      <audio #audio controls style="width:100%"></audio>
+      <audio #audio controls style="width:100%" 
+      (play)="playing()" 
+      (pause)="paused()" 
+      (ended)="ended()"
+      ></audio>
   `,
   styles: []
 })
 export class PlayerComponentComponent implements OnInit {
 
+  playing(){
+    this.playerService.setStatus(0);
+  }
+  paused(){
+    this.playerService.setStatus(1);
+  } 
+  ended(){
+    this.playerService.setStatus(2);
+  }
+
   
   constructor(private audio: ElementRef, private playerService:PlayerService) { }
+
 
   playerControl(url){
     let audio = this.audio.nativeElement.children[0];

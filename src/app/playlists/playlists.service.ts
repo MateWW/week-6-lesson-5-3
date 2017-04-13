@@ -38,10 +38,12 @@ export class PlaylistsService {
       return;
 
     // Prosta modyfikacja :D
+    let id = playlist.tracks.findIndex(tracki => tracki.id == track.id);
     if(playlist.tracks.find(tracki => tracki.id == track.id))
-      return;
-
-    playlist.tracks.push(track);
+      playlist.tracks.splice(id,1);    
+    else
+      playlist.tracks.push(track);
+    
     this.savePlaylist(playlist)
       .subscribe(()=>{});
   }

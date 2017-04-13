@@ -32,13 +32,12 @@ export class AddRemoveButtonComponent implements OnInit {
   constructor( private playlistSelectionService:PlaylistselectionService) { }
 
   ngOnInit() {
-    this.playlistSelectionService.getSelectionIdStream()
-      .subscribe(()=>this.onList=false)
 
     this.playlistSelectionService.getIsOnPlaylistStream()
       .subscribe(isOnPlaylist=>{
         if(!isOnPlaylist)
           return;
+        this.onList=false
         for(let track of isOnPlaylist){
           if(track.id==this.trackId)
             this.onList=true;
