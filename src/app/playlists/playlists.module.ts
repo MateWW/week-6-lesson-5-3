@@ -8,11 +8,10 @@ import { ContentCardComponent } from './content-card.component';
 import { PlaylistFormComponent } from './playlist-form.component';
 import { PlaylistsListComponent } from './playlists-list.component';
 import { PlaylistDetailComponent } from './playlist-detail.component';
+import { FormfeedbackComponent } from './formfeedback.component'
 import { MusicSharedModule } from "../music-shared/music-shared.module"
 
-
-import playlistsData from './playlists.data';
-import { FormfeedbackComponent } from './formfeedback.component'
+import { PlaylistConnectionService } from './playlist-connection.service'
 
 @NgModule({
   imports: [
@@ -35,7 +34,7 @@ import { FormfeedbackComponent } from './formfeedback.component'
   providers:[
     //{provide: PlaylistsService, useClass: ExtendedPlaylistsService }
     //PlaylistsService,
-    { provide: 'PlaylistsData', useValue: playlistsData }
+    PlaylistConnectionService
     // { provide: 'PlaylistsData', useFactory: (data)=>{
     //    data.push({id: 123, name:"Test", color:'red', favourite:false, tracks:2})
     //    return data;

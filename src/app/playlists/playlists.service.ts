@@ -1,8 +1,10 @@
 import { Injectable, Inject, Optional } from '@angular/core';
 import { Http } from '@angular/http';
 import { Subject, Observable } from 'rxjs'
+import { PlaylistConnectionService } from './playlist-connection.service'
 
 export interface Playlist{
+      id?:number,
       name: string,
       tracks: any[],
       color: string,
@@ -14,9 +16,9 @@ export class PlaylistsService {
 
   server_url = 'http://localhost:3000/playlists/';
 
-  constructor(private http:Http) { }
+  constructor(private http:Http, private playlistConnService: PlaylistConnectionService) { }
 
-  playlists = [ ]
+  playlists:Playlist[] = [ ]
 
   savePlaylist(playlist){
     let request; 
@@ -48,7 +50,14 @@ export class PlaylistsService {
       .subscribe(()=>{});
   }
 
+  test(){
+    let stream = new Subject();
+    setTimeout(()=>stream.next("Hello"),3000);
+    return stream;    
+  }
+
   createPlaylist():Playlist {
+    this.test().subscribe(text=>console.log(text));
     return {
       name: '',
       tracks: [],
