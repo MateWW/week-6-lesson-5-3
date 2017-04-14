@@ -34,8 +34,11 @@ export class PlaylistDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
+
       let id = parseInt(params['id']);
+
       if (id) {
+        console.log("playlist get")
         this.playlistsService.getPlaylist(id)
             .subscribe( (playlist:Playlist) => {
               this.playlist = playlist

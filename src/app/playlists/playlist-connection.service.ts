@@ -63,7 +63,7 @@ export class PlaylistConnectionService {
 
   	let playlist = this.playlists.find( playlist => ( playlist.id === parseInt(playlistId)) );
 
-  	console.log( this.tempPlaylists );
+  	console.log( this.tempPlaylists , track );
 
   	if(!playlist)
       return;
@@ -122,19 +122,22 @@ export class PlaylistConnectionService {
 
   preparePlaylist(playlist:Playlist){
 
-    let stream$ = new Subject(),
-      playlistCopy = Object.assign({},playlist);
+    let stream$ = new Promise((resolve,reject) =>{
 
-    this.loadTracks(playlistCopy.tracks)
-      .subscribe( tracks => {
-        playlistCopy.tracks = <any[]>tracks;
-        stream$.next( playlistCopy );
-      });
+      let playlistCopy = Object.assign({},playlist);    
 
+      this.loadTracks(playlistCopy.tracks)
+        .subscribe( tracks => {
+
+          playlistCopy.tracks = <any[]>tracks;
+          resolve( playlistCopy );
+        });
+    });
     return stream$;
   }
 
   getPlaylist( id ){
+
 
   	let playlist$ = new Subject(); 
 
@@ -144,18 +147,23 @@ export class PlaylistConnectionService {
   	this.http.get(this.playlist_url+id+this.relation)
       .map( response => response.json())
       .subscribe( playlist => {
-
+        
         let tempPlaylist = this.tempPlaylists.find( tempplaylist => 
           ( tempplaylist.id === playlist.id )
         );
-
+        
         if(tempPlaylist)
           tempPlaylist = playlist;
         else
           this.tempPlaylists.push(playlist);
 
+        
         this.preparePlaylist(playlist)
-          .subscribe(playlist => playlist$.next(playlist));
+          .then(playlist => {
+            console.log(playlist);
+            playlist$.next(playlist)
+            
+          });
 
       });
   	
@@ -165,8 +173,31 @@ export class PlaylistConnectionService {
   
 
   getPlaylists(){
+    this.http.get(this.playlist_url+this.relation)
+      .map ( response => response.json())
+      .subscribe( playlists => {
+        
+        this.tempPlaylists = playlists;
 
-  	return this.playlists$.startWith(this.playlists);
+        let prePlaylists = [],
+          preIndex = 0;
+
+        playlists.forEach( playlist => {
+          
+          this.preparePlaylist( playlist )
+            .then( prePlaylist => {
+              prePlaylists.push(prePlaylist);
+              preIndex++;
+              if(preIndex === playlists.length)
+              {
+                this.playlists$.next(prePlaylists);
+              }
+            });
+
+        });
+      
+      })
+  	return this.playlists$;
   }
 
   constructor(private http : Http) { }
