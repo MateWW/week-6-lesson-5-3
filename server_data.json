@@ -12,6 +12,14 @@
       "color": "#0000FF",
       "favourite": 0,
       "description": "12"
+    },
+    {
+      "name": "Test",
+      "color": "#2cf807",
+      "favourite": true,
+      "category": "Rockowa",
+      "description": "hahaha",
+      "id": 3
     }
   ],
   "tracks": [
@@ -34,6 +42,15 @@
         "7bBDetF0vzttoaS2g1vXe3"
       ],
       "id": 2
+    },
+    {
+      "playlistId": 3,
+      "tracksId": [
+        "6tOXiWLbr0Tmko5OfhNn7K",
+        "6XgVVl0xGDxtaBaPwr7ZMT",
+        "2P3Bw6YLoyn7KKoNXFXv5D"
+      ],
+      "id": 3
     }
   ]
 }

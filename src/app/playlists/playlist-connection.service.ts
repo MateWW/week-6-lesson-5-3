@@ -18,22 +18,6 @@ interface Track{
 @Injectable()
 export class PlaylistConnectionService {
 
-  // playlists:Playlist[] = [
-  // 	{
-  // 	  id: 1,
-  //     name: 'Test 1',
-  //     tracks: [],
-  //     color: '#FF0000',
-  //     favourite: false
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Test 2',
-  //     tracks: [],
-  //     color: '#FF00FF',
-  //     favourite: true
-  //   }
-  // ];
 
   playlist_url = "http://localhost:3000/playlists/";
   tracks_url = "http://localhost:3000/tracks/"
@@ -47,14 +31,23 @@ export class PlaylistConnectionService {
   playlists$ = new Subject(); 
 
   savePlaylist(playlist){
-  	let playlistId = playlist.id;
-  	return this.getPlaylist(playlistId);
+    let request,
+      copy = Object.assign({},playlist);
+
+    delete copy.tracks;
+
+    if(copy.id){
+      request = this.http.put(this.playlist_url + copy.id, copy)
+    }else{
+       request = this.http.post(this.playlist_url, copy)
+    }
+
+  	return request.map(response => response.json())
+          .do( playlist => this.getPlaylist(playlist.id));
   }
 
   addPlaylist( playlist ){
 
-  	playlist.id = this.playlists.length;
-  	// this.playlists.push(playlist);
 
   	return this.savePlaylist( playlist );
   }
