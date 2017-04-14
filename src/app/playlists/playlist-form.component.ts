@@ -66,8 +66,9 @@ export class PlaylistFormComponent implements OnInit {
       return;
     }
     this.playlistsService.savePlaylist(playlist)
-    .subscribe( playlist => {
-      this.router.navigate(['playlist',playlist.id]);
+    .subscribe( (playlist) => {
+      // console.log(playlist["id"]);
+      this.router.navigate(['playlist',playlist["id"]]);
     })
   }
 

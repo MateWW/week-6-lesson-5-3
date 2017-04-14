@@ -38,6 +38,8 @@ export class AddRemoveButtonComponent implements OnInit {
         if(!isOnPlaylist)
           return;
         this.onList=false
+
+
         for(let track of isOnPlaylist){
           if(track.id==this.trackId)
             this.onList=true;

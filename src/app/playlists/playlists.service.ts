@@ -18,36 +18,21 @@ export class PlaylistsService {
 
   constructor(private http:Http, private playlistConnService: PlaylistConnectionService) { }
 
-  playlists:Playlist[] = [ ]
+  playlists:Playlist[] = [];
 
   savePlaylist(playlist){
-    let request; 
-    if(playlist.id){
-      request = this.http.put(this.server_url + playlist.id, playlist)
-    }else{
-      request = this.http.post(this.server_url, playlist)
-    }
-      return request.map(response => response.json())
-      .do( playlist => {
-        this.getPlaylists()
-      })
+    
+    if(playlist.id)
+      return this.playlistConnService.savePlaylist(playlist);
+    else
+      return this.playlistConnService.addPlaylist(playlist);
+
   }
 
   addToPlaylist(playlistId, track){
-    let playlist = this.playlists.find(playlist => playlist.id == playlistId);
 
-    if(!playlist)
-      return;
-
-    // Prosta modyfikacja :D
-    let id = playlist.tracks.findIndex(tracki => tracki.id == track.id);
-    if(playlist.tracks.find(tracki => tracki.id == track.id))
-      playlist.tracks.splice(id,1);    
-    else
-      playlist.tracks.push(track);
-    
-    this.savePlaylist(playlist)
-      .subscribe(()=>{});
+    this.playlistConnService.addToPlaylist( playlistId, track );    
+ 
   }
 
   test(){
@@ -57,20 +42,20 @@ export class PlaylistsService {
   }
 
   createPlaylist():Playlist {
-    this.test().subscribe(text=>console.log(text));
+
     return {
       name: '',
       tracks: [],
       color: '#FF0000',
       favourite: false
     };
+
   }
 
   getPlaylists(){
-    return this.http.get(this.server_url)
-              .map( response => response.json())
+    return this.playlistConnService.getPlaylists()
               .subscribe( playlists => {
-                this.playlists = playlists;
+                this.playlists = <Playlist[]>playlists;
                 this.playlistsStream$.next(this.playlists)
               })
   }
@@ -85,8 +70,7 @@ export class PlaylistsService {
   }
 
   getPlaylist(id){
-    return this.http.get(this.server_url + id)
-    .map(response => response.json())
+    return this.playlistConnService.getPlaylist(id);
   }
 
 }
