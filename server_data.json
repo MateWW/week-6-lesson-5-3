@@ -14,22 +14,26 @@
       "description": "12"
     }
   ],
-  "tracks":[
+  "tracks": [
     {
-      "id":1,
+      "id": 1,
       "tracksId": [
-        "4G3DXzZf0J3EFWgY1jfFbJ",
-        "15xFPuokj4Lg8if76rlOXG"
+        "4LmtBwa5xIDTeMm6jhWB1B",
+        "2bPKjPqjgywJVJaHXIYn0M"
       ],
-      "playlistId":2
+      "playlistId": 2
     },
     {
-      "id":2,
+      "playlistId": 1,
       "tracksId": [
-        "15xFPuokj4Lg8if76rlOXG"
+        "74a5jzQvmSdlWNs2FMezDQ",
+        "4LmtBwa5xIDTeMm6jhWB1B",
+        "2bPKjPqjgywJVJaHXIYn0M",
+        "0TxAVbpebocjTRAiPgZ6wL",
+        "0fLtMsnrvyFKQKrXF9iD7A",
+        "7bBDetF0vzttoaS2g1vXe3"
       ],
-      "playlistId":1
+      "id": 2
     }
-
   ]
 }

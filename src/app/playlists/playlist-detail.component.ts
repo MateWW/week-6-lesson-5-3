@@ -38,7 +38,6 @@ export class PlaylistDetailComponent implements OnInit {
       let id = parseInt(params['id']);
 
       if (id) {
-        console.log("playlist get")
         this.playlistsService.getPlaylist(id)
             .subscribe( (playlist:Playlist) => {
               this.playlist = playlist
